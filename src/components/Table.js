@@ -10,7 +10,7 @@ class Table extends Component{
             victory:null
         }
     }
-
+    //creating a table
     Createtable(x,y){
         let table=[]
         for(let i=0;i<x;i++){
@@ -21,7 +21,7 @@ class Table extends Component{
         }
         return table
     }
-
+    //inserting coins into the table
     insertCoin=(colnum,rownum=this.state.table.length-1)=>{
         let table=this.state.table
         let plyer=this.state.currentplyer
@@ -44,6 +44,7 @@ class Table extends Component{
 checkvictory(plyer,colnum,rownum){
     let table=this.state.table
     let victory=false
+    //checks if there are 4 in a colnum
     if(rownum<3){
         victory=true
         for(let y=rownum;y<=rownum+3;y++){
@@ -58,6 +59,7 @@ checkvictory(plyer,colnum,rownum){
           return victory
         }
     }
+    //checks if there are 4 in a row
    for(let x=0;x<table[rownum].length;x++){
        if(table[rownum][x+3]!==undefined){
            
@@ -70,6 +72,7 @@ checkvictory(plyer,colnum,rownum){
         }
        }
    }
+   //checks if there are 4 diagonally
    for(let y=0;y<table.length;y++){
        for(let x=0;x<table[y].length;x++){
            if(table[y+3]!==undefined && table[y+3][x+3]!==undefined){
@@ -116,7 +119,9 @@ restart=()=>{
             <div className='container'>
                 {this.state.victory ? <button onClick={this.restart} >Restart</button> : null}
                 {this.state.victory ? <h1>{this.state.victory}</h1> : null}
+                {/* renders the onclick insert a coin */}
                 <div className='row'>{this.state.table[0].map((b,index)=>this.state.currentplyer===1 ? <InsertCoin col={index} insertCoin={this.insertCoin} class={'red'} /> : <InsertCoin col={index} insertCoin={this.insertCoin} class={'yellow'} /> )}</div>
+                {/* renders the table of the game */}
                 {this.state.table.map(r=><div className='row table'>{r.map(c=>c==='.' ?<div className='box '></div> : c===1 ? <div className='red'></div> : <div className='yellow'></div>)}</div>)}
             </div>
         )
