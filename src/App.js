@@ -6,7 +6,7 @@ function App() {
   return (
     <div className="App">
       <h1>4 in A row!</h1>
-     <Table />
+      <Table />
     </div>
   );
 }
